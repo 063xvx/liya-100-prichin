@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8E8ED">
+<title>100 причин, почему ты особенная, Лия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#F8E8ED; --milk:#FFF9F5; --powder:#EBCBD5; --wine:#813B55; --white:#FFFFFF;
+  --wine-soft:rgba(129,59,85,.72);
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --shadow:0 10px 30px -12px rgba(129,59,85,.28);
+  --shadow-lg:0 30px 70px -25px rgba(129,59,85,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-weight:300;color:var(--wine);background:var(--milk);line-height:1.6;overflow-x:hidden;
+  background-image:radial-gradient(1200px 600px at 10% -10%,var(--rose),transparent 60%),radial-gradient(900px 500px at 100% 30%,rgba(235,203,213,.45),transparent 60%);
+  background-attachment:fixed}
+body.lock{overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.ico{width:1em;height:1em;display:inline-block;vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ico.fill{fill:currentColor;stroke:none}
+
+/* ---------- petals ---------- */
+#petals{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.petal{position:absolute;top:-30px;width:14px;height:18px;border-radius:70% 0 70% 0;background:linear-gradient(135deg,#F3CFDA,#E3A9BC);opacity:0;animation:fall linear forwards}
+@keyframes fall{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}10%{opacity:.8}100%{transform:translate3d(var(--dx),108vh,0) rotate(var(--rot));opacity:0}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 22px 72px;overflow:hidden}
+.hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(235,203,213,.65),transparent 70%);top:-160px;right:-180px;filter:blur(10px)}
+.hero::after{content:"";position:absolute;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(248,232,237,.9),transparent 70%);bottom:-170px;left:-170px}
+.hero>*{position:relative;z-index:1}
+.eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--wine-soft);font-weight:400;display:flex;align-items:center;gap:14px}
+.eyebrow::before,.eyebrow::after{content:"";width:34px;height:1px;background:var(--powder)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,9.5vw,5.6rem);line-height:1.02;letter-spacing:-.01em;margin:22px 0 16px;max-width:14ch}
+h1 em{font-style:italic;font-weight:400}
+.sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.6vw,1.6rem);color:var(--wine-soft);max-width:30ch;line-height:1.35}
+.note{margin:34px auto 0;max-width:560px;padding:30px 28px 28px;border-radius:26px;background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(255,249,245,.55));border:1px solid rgba(235,203,213,.9);box-shadow:var(--shadow);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);position:relative}
+.note::before{content:"“";position:absolute;top:-4px;left:22px;font-family:var(--serif);font-size:5rem;line-height:1;color:var(--powder)}
+.note p{font-family:var(--serif);font-size:clamp(1.2rem,3.9vw,1.5rem);line-height:1.5;font-weight:500}
+.bouquet{width:min(190px,46vw);margin-top:26px;filter:drop-shadow(0 14px 18px rgba(129,59,85,.18))}
+.btn{margin-top:30px;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;background:linear-gradient(135deg,#8E4561,var(--wine));color:var(--white);font-weight:400;letter-spacing:.02em;font-size:1rem;box-shadow:0 14px 30px -12px rgba(129,59,85,.65);transition:transform .35s,box-shadow .35s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(129,59,85,.7)}
+.btn:active{transform:scale(.98)}
+.scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:1px;height:34px;background:linear-gradient(var(--wine-soft),transparent);animation:hint 2.2s ease-in-out infinite}
+@keyframes hint{0%,100%{opacity:.2;transform:translate(-50%,0)}50%{opacity:.8;transform:translate(-50%,6px)}}
+
+/* ---------- appear ---------- */
+.rise{opacity:0;transform:translateY(18px);animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.15s}.d2{animation-delay:.45s}.d3{animation-delay:.8s}.d4{animation-delay:1.25s}.d5{animation-delay:1.6s}.d6{animation-delay:1.9s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- collection ---------- */
+#reasons{padding:0 0 40px;scroll-margin-top:0}
+.progress{position:sticky;top:0;z-index:20;padding:calc(10px + env(safe-area-inset-top)) 18px 12px;background:linear-gradient(rgba(255,249,245,.94),rgba(255,249,245,.82));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(235,203,213,.7)}
+.progress-in{max-width:1100px;margin:0 auto}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.86rem;color:var(--wine)}
+.progress-top b{font-weight:500}
+.progress-top span:last-child{color:var(--wine-soft)}
+.bar{height:4px;border-radius:4px;background:var(--powder);margin-top:8px;overflow:hidden;opacity:.8}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#C98099,var(--wine));border-radius:4px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.cat{padding:64px 4px 22px;text-align:center}
+.cat small{display:block;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--wine-soft);font-weight:400}
+.cat h2{font-family:var(--serif);font-weight:500;font-style:italic;font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.1;margin:8px 0 6px}
+.cat .count{font-size:.82rem;color:var(--wine-soft)}
+.cat .orn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;color:var(--powder)}
+.cat .orn::before,.cat .orn::after{content:"";width:46px;height:1px;background:currentColor}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+@media(min-width:820px){.grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+@media(min-width:1100px){.grid{grid-template-columns:repeat(5,1fr);gap:18px}}
+
+.card{position:relative;aspect-ratio:1/1.12;border-radius:20px;background:linear-gradient(160deg,var(--white),var(--milk));border:1px solid rgba(235,203,213,.95);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;overflow:hidden;opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .35s,background .5s,border-color .5s;-webkit-tap-highlight-color:transparent}
+.card.in{opacity:1;transform:none}
+.card::before{content:"";position:absolute;inset:7px;border-radius:14px;border:1px solid rgba(235,203,213,.7);pointer-events:none}
+.card .n{font-family:var(--serif);font-size:clamp(2rem,8vw,2.6rem);font-weight:500;line-height:1;letter-spacing:.02em}
+.card .h{font-size:1.05rem;color:#C98099;transition:transform .4s,color .4s}
+.card:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+@media(hover:hover){.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}.card:hover .h{transform:scale(1.25)}}
+.card.read{background:linear-gradient(160deg,#F3DCE3,var(--powder));border-color:rgba(201,128,153,.55);box-shadow:0 6px 16px -10px rgba(129,59,85,.35)}
+.card.read .n{color:rgba(129,59,85,.55)}
+.card.read .h{color:var(--wine)}
+.card.read::after{content:"";position:absolute;top:10px;right:12px;width:6px;height:6px;border-radius:50%;background:var(--wine);opacity:.55}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;perspective:1400px}
+.modal[hidden]{display:none}
+.backdrop{position:absolute;inset:0;background:rgba(80,30,50,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .4s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sheet{position:relative;width:min(100%,460px);max-height:calc(100svh - 36px);overflow:auto;padding:38px 28px 26px;text-align:center;border-radius:28px;background:linear-gradient(165deg,#FFFFFF,var(--milk) 55%,var(--rose));border:1px solid var(--powder);box-shadow:var(--shadow-lg);transform-origin:center}
+.sheet.flip{animation:flipin .75s cubic-bezier(.2,.8,.2,1) both}
+@keyframes flipin{0%{transform:rotateY(-95deg) scale(.88);opacity:0}60%{opacity:1}100%{transform:none;opacity:1}}
+.sheet::before{content:"";position:absolute;inset:9px;border-radius:21px;border:1px solid rgba(235,203,213,.8);pointer-events:none}
+.m-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--wine-soft);font-size:1.1rem;transition:background .3s}
+.m-close:hover{background:rgba(235,203,213,.5)}
+.m-cat{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--wine-soft);font-weight:400;padding:0 28px}
+.m-num{font-family:var(--serif);font-size:4.2rem;line-height:1;font-weight:500;margin:12px 0 4px;color:var(--wine)}
+.m-heart{color:#C98099;font-size:1.1rem;display:block;margin-bottom:16px}
+.m-text{font-family:var(--serif);font-size:clamp(1.3rem,4.6vw,1.6rem);line-height:1.45;font-weight:500;min-height:6.5em;display:flex;align-items:center;justify-content:center}
+.m-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:20px}
+.m-nav button{display:inline-flex;align-items:center;gap:6px;padding:11px 14px;border-radius:999px;font-size:.88rem;color:var(--wine);transition:background .3s}
+.m-nav button:hover{background:rgba(235,203,213,.45)}
+.m-nav button:disabled{opacity:.3;pointer-events:none}
+.m-nav .m-done{background:var(--wine);color:#fff;padding:11px 22px}
+.m-nav .m-done:hover{background:#6e2f47}
+
+.burst{position:fixed;pointer-events:none;z-index:200;color:#C98099;font-size:16px;animation:float 1.3s ease-out forwards}
+@keyframes float{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}15%{opacity:1}100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.1);opacity:0}}
+
+/* ---------- finale ---------- */
+.finale{position:relative;margin-top:50px;padding:110px 22px 120px;text-align:center;overflow:hidden;background:linear-gradient(180deg,transparent,var(--rose) 25%,var(--powder) 100%)}
+.finale::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,.75),transparent 68%)}
+.finale>*{position:relative}
+.finale h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(2.4rem,8vw,4rem);line-height:1.1;margin-bottom:34px}
+.letter{max-width:600px;margin:0 auto;padding:36px 28px;border-radius:28px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);box-shadow:var(--shadow-lg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.letter p{font-family:var(--serif);font-size:clamp(1.25rem,4.2vw,1.55rem);line-height:1.55;font-weight:500;margin-bottom:18px}
+.letter p:last-child{margin-bottom:0}
+.letter .strong{font-style:italic}
+.sign{margin-top:34px;font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,5vw,2rem)}
+.big-bouquet{width:min(260px,64vw);margin:0 auto 26px;filter:drop-shadow(0 18px 22px rgba(129,59,85,.22))}
+.beat{display:inline-block;color:var(--wine);font-size:2.2rem;margin-top:24px;animation:beat 1.8s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.12)}70%{transform:scale(1)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.rd1{transition-delay:.15s}.rd2{transition-delay:.35s}.rd3{transition-delay:.55s}
+
+footer{padding:26px 20px calc(30px + env(safe-area-inset-bottom));text-align:center;font-size:.78rem;color:var(--wine-soft);background:var(--powder);letter-spacing:.04em}
+
+.totop{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.9);color:var(--wine);box-shadow:var(--shadow);border:1px solid var(--powder);z-index:30;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .4s,transform .4s;font-size:1.1rem}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .petal,.burst,.scroll-hint,.beat{animation:none!important;display:none}
+  .rise,.reveal,.card{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+  .sheet.flip{animation:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+
+    <symbol id="rose" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="#DFA3B6"/>
+      <circle cx="50" cy="50" r="35" fill="#EBBBCA"/>
+      <circle cx="50" cy="50" r="26" fill="#F3CDD8"/>
+      <circle cx="50" cy="50" r="17" fill="#F9E0E7"/>
+      <circle cx="50" cy="50" r="8" fill="#EBBBCA"/>
+      <g fill="none" stroke="#B5607C" stroke-width="1.6" stroke-linecap="round" opacity=".75">
+        <path d="M17 44a34 34 0 0 1 66-4"/>
+        <path d="M22 66a30 30 0 0 0 56-8"/>
+        <path d="M30 36a22 22 0 0 1 42 6"/>
+        <path d="M33 60a19 19 0 0 0 35-2"/>
+        <path d="M42 44a10 10 0 0 1 17 2"/>
+        <path d="M44 55a7 7 0 0 0 12-2"/>
+      </g>
+    </symbol>
+    <symbol id="leaf" viewBox="0 0 40 70"><path d="M20 2C38 20 38 52 20 68 2 52 2 20 20 2Z" fill="#9DB39A"/><path d="M20 8v56" stroke="#7E977B" stroke-width="1.4" fill="none"/></symbol>
+
+    <symbol id="bouquet" viewBox="0 0 200 260">
+      <g stroke="#7E977B" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M100 150 100 240"/><path d="M78 118 96 240"/><path d="M128 120 104 240"/><path d="M52 100 94 240"/><path d="M150 102 108 240"/>
+      </g>
+      <use href="#leaf" x="32" y="118" width="36" height="62" transform="rotate(-38 50 150)"/>
+      <use href="#leaf" x="132" y="118" width="36" height="62" transform="rotate(38 150 150)"/>
+      <use href="#leaf" x="60" y="70" width="30" height="52" transform="rotate(-20 75 96)"/>
+      <use href="#leaf" x="112" y="70" width="30" height="52" transform="rotate(20 127 96)"/>
+      <use href="#rose" x="14" y="54" width="70" height="70"/>
+      <use href="#rose" x="116" y="56" width="70" height="70"/>
+      <use href="#rose" x="64" y="82" width="72" height="72" />
+      <use href="#rose" x="62" y="8" width="76" height="76"/>
+      <path d="M72 196 128 196 114 252 86 252Z" fill="#FFF9F5" opacity=".85"/>
+      <path d="M88 186 112 186 118 214 82 214Z" fill="#813B55"/>
+      <path d="M100 196c-8-12-24-10-20 0 3 8 16 6 20 0Zm0 0c8-12 24-10 20 0-3 8-16 6-20 0Z" fill="#813B55"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="petals" aria-hidden="true"></div>
+
+<header class="hero" id="top">
+  <p class="eyebrow rise d1">A little gift for you</p>
+  <h1 class="rise d2">100 причин, почему ты <em>особенная</em></h1>
+  <p class="sub rise d3">Лия, я мог бы перечислять их бесконечно, но решил начать со ста...</p>
+
+  <div class="note rise d4">
+    <p>Лия, я хочу хоть немного радовать тебя даже на расстоянии. Ты для меня очень многое значишь, и мне хочется почаще видеть твою улыбку, даже если пока между нами километры. ❤️</p>
+  </div>
+
+  <svg class="bouquet rise d5" viewBox="0 0 200 260" role="img" aria-label="Букет нежно-розовых роз"><use href="#bouquet"/></svg>
+
+  <button class="btn rise d6" id="openBtn" type="button">Открыть мои 100 причин <svg class="ico fill"><use href="#i-heart"/></svg></button>
+  <span class="scroll-hint" aria-hidden="true"></span>
+</header>
+
+<main id="reasons">
+  <div class="progress" id="progress">
+    <div class="progress-in">
+      <div class="progress-top"><span id="progText">Открыто 0 из 100 причин</span><span id="progPct">0%</span></div>
+      <div class="bar"><i id="progBar"></i></div>
+    </div>
+  </div>
+  <div class="wrap" id="catalog"></div>
+</main>
+
+<section class="finale" id="finale">
+  <h2 class="reveal">Но знаешь, Лия...</h2>
+  <svg class="big-bouquet reveal rd1" viewBox="0 0 200 260" role="img" aria-label="Букет роз"><use href="#bouquet"/></svg>
+  <div class="letter reveal rd2">
+    <p>Даже эти сто причин не смогут передать всего, что я хотел бы тебе сказать.</p>
+    <p>Мне очень нравится общаться с тобой, радовать тебя и видеть твою улыбку.</p>
+    <p>Я искренне жду того дня, когда мы наконец встретимся, когда я смогу обнять тебя, посмотреть в твои красивые глаза и провести время рядом с тобой, а не через экран.</p>
+    <p>Спасибо тебе за то, что ты есть.</p>
+    <p class="strong">И пожалуйста, никогда не забывай, насколько ты особенная.</p>
+  </div>
+  <p class="sign reveal rd3">С любовью, твой 063xvx ❤️</p>
+  <div class="beat reveal rd3" aria-hidden="true"><svg class="ico fill"><use href="#i-heart"/></svg></div>
+</section>
+
+<footer>Сделано с любовью, только для Лии</footer>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mText">
+  <div class="backdrop" id="backdrop"></div>
+  <article class="sheet" id="sheet">
+    <button class="m-close" id="mClose" type="button" aria-label="Закрыть"><svg class="ico"><use href="#i-x"/></svg></button>
+    <p class="m-cat" id="mCat"></p>
+    <p class="m-num" id="mNum"></p>
+    <svg class="ico fill m-heart"><use href="#i-heart"/></svg>
+    <p class="m-text" id="mText"></p>
+    <div class="m-nav">
+      <button type="button" id="mPrev"><svg class="ico"><use href="#i-left"/></svg> Назад</button>
+      <button type="button" id="mDone" class="m-done">Закрыть</button>
+      <button type="button" id="mNext">Дальше <svg class="ico"><use href="#i-right"/></svg></button>
+    </div>
+  </article>
+</div>
+
+<button class="totop" id="toTop" type="button" aria-label="Наверх"><svg class="ico"><use href="#i-up"/></svg></button>
+
+<script>
+(function(){
+  "use strict";
+
+  var CATS = [
+    {title:"Моя любимая красота", tag:"Первая глава", from:1, to:20},
+    {title:"Твоя невероятная личность", tag:"Вторая глава", from:21, to:40},
+    {title:"Мелочи, которые я обожаю", tag:"Третья глава", from:41, to:60},
+    {title:"Что я чувствую рядом с тобой", tag:"Четвёртая глава", from:61, to:80},
+    {title:"Мечты о нас и нашей встрече", tag:"Пятая глава", from:81, to:100}
+  ];
+
+  var REASONS = [
+    // 01–20 красота
+    "Мне безумно нравятся твои глаза. В них можно потеряться, и я совсем не возражаю.",
+    "Твоя улыбка способна сделать мой день лучше. Проверено не один раз.",
+    "Ты невероятно красивая. Надеюсь, ты и сама это знаешь.",
+    "Мне достаточно увидеть твою фотографию, чтобы настроение стало светлее.",
+    "Твой взгляд задевает меня даже через экран. Страшно представить, что будет вживую.",
+    "В тебе есть красота, которой не нужно стараться. Она просто есть.",
+    "Мне нравится, как ты выглядишь, когда улыбаешься. Хочется оставить этот кадр себе навсегда.",
+    "Уверен, ты красивая в любой одежде и в любой обстановке.",
+    "Иногда я просто смотрю на твои фотографии и тихо улыбаюсь. Со стороны это, наверное, выглядит смешно.",
+    "У тебя очень красивые черты лица. Мне хочется разглядывать их долго и без спешки.",
+    "Ты красивая без всяких усилий. Это почти несправедливо по отношению ко всем остальным.",
+    "Твоя красота не только внешняя. Она чувствуется и в том, как ты общаешься со мной.",
+    "Если бы красоту можно было измерять, для тебя мне пришлось бы придумать отдельную шкалу.",
+    "Мне кажется, одной твоей улыбки достаточно, чтобы кому-то стало теплее. Мне хватает точно.",
+    "Ты красивая так, как красивы вещи, на которые хочется смотреть и не уставать.",
+    "В твоих глазах столько всего, что я готов читать их как книгу, страницу за страницей.",
+    "Надеюсь, когда ты смотришь в зеркало, ты видишь хотя бы половину того, что вижу я.",
+    "У тебя особенная улыбка. После неё невольно улыбаешься в ответ.",
+    "Ты как будто создана для того, чтобы на тебя смотрели и тихо восхищались.",
+    "Твоя красота моя любимая причина проверять телефон чаще, чем нужно.",
+
+    // 21–40 личность
+    "Мне нравится твоя нежность. Она чувствуется даже в коротких сообщениях.",
+    "Ты умеешь заставить меня улыбаться даже через экран. Не каждому это удаётся.",
+    "Мне нравится, как ты со мной разговариваешь. Рядом с тобой я чувствую себя собой.",
+    "С тобой хочется быть лучше. Не потому, что нужно, а потому, что хочется.",
+    "Мне нравится, как мило ты называешь меня зай. Каждый раз это маленькая радость.",
+    "Есть вещи, которые невозможно подделать: ты вызываешь тёплые чувства просто собой.",
+    "Разговор с тобой не надоедает. Хоть о важном, хоть о полной ерунде.",
+    "Твой смех хочется слышать снова и снова.",
+    "Ты особенная не потому, что я так решил. Просто с тобой мне по-особенному.",
+    "Мне нравится, что в тебе уживаются нежность и настоящесть. Это редкое сочетание.",
+    "Даже обычный разговор с тобой может стать лучшей частью моего дня.",
+    "Тебе не нужно стараться меня впечатлить. Ты уже это сделала.",
+    "Ты умеешь превращать обычный вечер в тёплый, даже когда нас разделяют километры.",
+    "Твоё внимание ко мне подарок, и я очень его ценю.",
+    "Мне нравится, как ты пишешь. Каждое сообщение от тебя маленькое событие.",
+    "Мне нравится, что ты именно такая, какая есть. Переделывать в тебе нечего.",
+    "Рядом с тобой, пусть даже через экран, мне становится спокойнее.",
+    "Ты умеешь быть важной для человека, не прилагая к этому видимых усилий.",
+    "Когда я думаю о тебе, я думаю о чём-то хорошем. Это дорогого стоит.",
+    "Ты девушка, ради которой хочется придумывать сайты. Видишь, до чего ты меня довела.",
+
+    // 41–60 мелочи
+    "Я обожаю момент, когда на экране появляется твоё сообщение.",
+    "Мне нравится ждать твоего ответа. Даже ожидание с тобой какое-то тёплое.",
+    "Мне нравится, как ты ко мне обращаешься. Простые слова от тебя звучат совсем по-особенному.",
+    "Мне нравится даже то, как мигает уведомление, если оно от тебя.",
+    "Любое твоё «привет» делает день чуть лучше.",
+    "Приятно думать, что где-то есть человек, который тоже может улыбнуться из-за моего сообщения.",
+    "Я люблю вечерние разговоры с тобой, когда день уже позади.",
+    "Мне нравится придумывать, чем бы тебя порадовать. Этот сайт одна из таких затей.",
+    "Люблю перечитывать нашу переписку и находить в ней тёплые моменты.",
+    "Одно твоё слово может поменять мне настроение. Это очень опасная сила.",
+    "Если бы за каждое «зай» от тебя мне давали по звёздочке, у меня уже была бы целая галактика.",
+    "Я заметил, что стал чаще проверять телефон. Причина, думаю, понятна.",
+    "Маленькие знаки внимания от тебя значат больше, чем ты, возможно, думаешь.",
+    "Люблю моменты, когда разговор затягивается и время куда-то исчезает.",
+    "Когда я перечитываю твои сообщения, мне нравится слышать их твоим голосом.",
+    "Я запоминаю то, что ты рассказываешь о себе. Мне это важно.",
+    "С тобой даже пауза в чате не кажется пустой.",
+    "Даже короткий разговор с тобой оставляет после себя хорошее настроение.",
+    "Люблю чувство, когда хочется срочно рассказать тебе что-то, даже если это пустяк.",
+    "Рядом с тобой простые вещи становятся важными.",
+
+    // 61–80 чувства
+    "Рядом с тобой я чувствую себя счастливее, даже когда «рядом» это экран.",
+    "Ты очень много для меня значишь. Я не всегда умею сказать это вслух, но хочу, чтобы ты знала.",
+    "Когда ты улыбаешься, у меня внутри становится светло и тепло.",
+    "Ты одна из причин, почему мои дни кажутся ярче.",
+    "Мне спокойно рядом с тобой, в любом формате.",
+    "С тобой я чувствую себя нужным. Это ощущение дорогого стоит.",
+    "Иногда сердце делает странный кувырок, стоит тебе написать. Врачи, наверное, назвали бы это симптомом. Я называю это тобой.",
+    "Я благодарен судьбе за то, что наши пути пересеклись.",
+    "Мне хочется заботиться о тебе. Хотя бы словами, пока не получается иначе.",
+    "Рядом с тобой хочется быть внимательнее, добрее и лучше.",
+    "Ты вызываешь во мне нежность, о существовании которой я мог и не знать.",
+    "Мне важно, чтобы ты была счастлива. Это не просьба, а моё искреннее желание.",
+    "Когда у тебя хороший день, он становится хорошим и у меня.",
+    "Бывает, мне немного грустно из-за расстояния, но мысль о тебе быстро возвращает тепло.",
+    "С тобой можно быть искренним. Для меня это очень ценно.",
+    "Мне хочется, чтобы тебе было тепло: и в прямом, и в переносном смысле.",
+    "Я скучаю по тебе. Иногда сильнее, чем признаюсь.",
+    "Ты умеешь поднимать мне настроение одним «привет».",
+    "С тобой я начинаю верить, что расстояние всего лишь временная деталь.",
+    "Ты стала человеком, о котором хочется думать каждый день.",
+
+    // 81–100 мечты
+    "Я очень хочу однажды увидеть твою улыбку не на фотографии, а прямо перед собой.",
+    "Мне хочется однажды обнять тебя и больше никуда не торопиться.",
+    "Я представляю, как мы наконец встретимся, и мне уже заранее немного волнительно.",
+    "Мечтаю услышать твой смех вживую, а не через динамик.",
+    "Хочу посмотреть тебе в глаза и убедиться, что они ещё лучше, чем на экране.",
+    "Мечтаю о дне, когда мы куда-нибудь пойдём вместе, а я буду украдкой смотреть на тебя вместо достопримечательностей.",
+    "Хочу однажды порадовать тебя чем-нибудь приятным лично, а не через экран.",
+    "Мне хочется выпить с тобой что-нибудь тёплое и разговаривать столько, сколько захочется.",
+    "Мечтаю взять тебя за руку и просто пройтись без цели.",
+    "Хочу, чтобы наша первая встреча была спокойной, тёплой и без спешки. Чтобы мы запомнили её надолго.",
+    "Хочу, чтобы километры однажды превратились в слова «я уже рядом».",
+    "Мне хочется строить с тобой планы, маленькие и большие. Начать можно со встречи.",
+    "Мечтаю увидеть, как ты улыбаешься в самую первую секунду нашей встречи.",
+    "Хочу сделать наше первое фото вместе. Настоящее, где мы рядом.",
+    "Встреча с тобой для меня будет событием. Я уже заранее к ней готовлюсь.",
+    "Мечтаю о моменте, когда скажу тебе «привет» не в чате, а голосом, глядя на тебя.",
+    "Хочу, чтобы у нас появилось много общих воспоминаний. Первое совсем скоро.",
+    "Я верю, что встреча будет такой, какой мы её себе представляем, а может, и лучше.",
+    "Хочу, чтобы однажды ты сказала «как хорошо, что ты рядом», и это было правдой.",
+    "Сотая причина самая простая: ты есть, и я очень жду нашей встречи."
+  ];
+
+  var KEY = "liya100:v1";
+  var opened = {};
+  var current = 0;
+  var lastFocus = null;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function $(id){ return document.getElementById(id); }
+  function pad(n){ return n < 10 ? "0" + n : String(n); }
+  function icon(name, cls){
+    var s = document.createElementNS("http://www.w3.org/2000/svg","svg");
+    s.setAttribute("class","ico" + (cls ? " " + cls : ""));
+    var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+    u.setAttribute("href","#i-" + name);
+    s.appendChild(u);
+    return s;
+  }
+  function catOf(n){
+    for (var i = 0; i < CATS.length; i++){ if (n >= CATS[i].from && n <= CATS[i].to) return CATS[i]; }
+    return CATS[0];
+  }
+
+  /* ---- storage ---- */
+  function load(){
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw){
+        var arr = JSON.parse(raw);
+        if (Array.isArray(arr)) arr.forEach(function(n){ if (n >= 1 && n <= 100) opened[n] = true; });
+      }
+    } catch(e){}
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(Object.keys(opened).map(Number))); } catch(e){}
+  }
+  function countOpened(){ return Object.keys(opened).length; }
+
+  /* ---- build ---- */
+  var cards = [];
+  var catCounters = [];
+  function build(){
+    var catalog = $("catalog");
+    CATS.forEach(function(c, ci){
+      var head = document.createElement("div");
+      head.className = "cat";
+      head.innerHTML = '<small></small><h2></h2><span class="count"></span><div class="orn"></div>';
+      head.querySelector("small").textContent = c.tag;
+      head.querySelector("h2").textContent = c.title;
+      head.querySelector(".orn").appendChild(icon("heart","fill"));
+      head.querySelector(".orn svg").style.fontSize = ".7rem";
+      catalog.appendChild(head);
+      catCounters[ci] = head.querySelector(".count");
+
+      var grid = document.createElement("div");
+      grid.className = "grid";
+      for (var n = c.from; n <= c.to; n++){
+        (function(num){
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "card";
+          b.setAttribute("aria-label", "Причина " + num);
+          var s = document.createElement("span");
+          s.className = "n";
+          s.textContent = pad(num);
+          var h = document.createElement("span");
+          h.className = "h";
+          h.appendChild(icon("heart","fill"));
+          b.appendChild(s);
+          b.appendChild(h);
+          b.addEventListener("click", function(ev){ openReason(num, ev); });
+          grid.appendChild(b);
+          cards[num] = b;
+        })(n);
+      }
+      catalog.appendChild(grid);
+    });
+  }
+
+  function refresh(){
+    var total = countOpened();
+    $("progText").textContent = total === 100 ? "Все 100 причин открыты ❤️" : "Открыто " + total + " из 100 причин";
+    $("progPct").textContent = total + "%";
+    $("progBar").style.width = total + "%";
+    CATS.forEach(function(c, ci){
+      var k = 0;
+      for (var n = c.from; n <= c.to; n++) if (opened[n]) k++;
+      catCounters[ci].textContent = k + " из " + (c.to - c.from + 1);
+    });
+    for (var n = 1; n <= 100; n++){
+      cards[n].classList.toggle("read", !!opened[n]);
+      cards[n].setAttribute("aria-label", "Причина " + n + (opened[n] ? ", прочитана" : ""));
+    }
+  }
+
+  /* ---- modal ---- */
+  var modal = $("modal"), sheet = $("sheet");
+  function show(n){
+    current = n;
+    var c = catOf(n);
+    $("mCat").textContent = c.title;
+    $("mNum").textContent = pad(n);
+    $("mText").textContent = REASONS[n - 1];
+    $("mPrev").disabled = n <= 1;
+    $("mNext").disabled = n >= 100;
+    sheet.classList.remove("flip");
+    void sheet.offsetWidth;
+    sheet.classList.add("flip");
+    sheet.scrollTop = 0;
+    if (!opened[n]){ opened[n] = true; save(); refresh(); }
+  }
+  function openReason(n, ev){
+    lastFocus = cards[n];
+    modal.hidden = false;
+    document.body.classList.add("lock");
+    show(n);
+    if (ev && !reduce){
+      var x = ev.clientX || window.innerWidth / 2, y = ev.clientY || window.innerHeight / 2;
+      hearts(x, y);
+    }
+    $("mDone").focus({preventScroll:true});
+  }
+  function closeModal(){
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove("lock");
+    if (lastFocus) { try { lastFocus.focus({preventScroll:true}); } catch(e){} }
+  }
+  function step(d){
+    var n = current + d;
+    if (n < 1 || n > 100) return;
+    lastFocus = cards[n];
+    show(n);
+    if (!reduce) hearts(window.innerWidth / 2, window.innerHeight / 2);
+  }
+  $("mClose").addEventListener("click", closeModal);
+  $("mDone").addEventListener("click", closeModal);
+  $("backdrop").addEventListener("click", closeModal);
+  $("mPrev").addEventListener("click", function(){ step(-1); });
+  $("mNext").addEventListener("click", function(){ step(1); });
+  document.addEventListener("keydown", function(e){
+    if (modal.hidden) return;
+    if (e.key === "Escape") closeModal();
+    else if (e.key === "ArrowLeft") step(-1);
+    else if (e.key === "ArrowRight") step(1);
+  });
+
+  /* ---- hearts burst ---- */
+  function hearts(x, y){
+    for (var i = 0; i < 7; i++){
+      var el = document.createElement("span");
+      el.className = "burst";
+      el.appendChild(icon("heart","fill"));
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+      el.style.setProperty("--x", ((Math.random() - .5) * 150).toFixed(0) + "px");
+      el.style.setProperty("--y", (-50 - Math.random() * 110).toFixed(0) + "px");
+      el.style.animationDelay = (i * 45) + "ms";
+      el.style.fontSize = (11 + Math.random() * 11).toFixed(0) + "px";
+      document.body.appendChild(el);
+      (function(e){ setTimeout(function(){ if (e.parentNode) e.parentNode.removeChild(e); }, 1700); })(el);
+    }
+  }
+
+  /* ---- petals ---- */
+  function petals(){
+    if (reduce) return;
+    var seen = false;
+    try { seen = !!localStorage.getItem("liya100:seen"); localStorage.setItem("liya100:seen","1"); } catch(e){}
+    var box = $("petals");
+    var count = seen ? 8 : 16;
+    for (var i = 0; i < count; i++){
+      var p = document.createElement("span");
+      p.className = "petal";
+      p.style.left = (Math.random() * 100).toFixed(1) + "%";
+      p.style.animationDuration = (9 + Math.random() * 7).toFixed(1) + "s";
+      p.style.animationDelay = (Math.random() * 5).toFixed(1) + "s";
+      p.style.setProperty("--dx", ((Math.random() - .3) * 160).toFixed(0) + "px");
+      p.style.setProperty("--rot", (180 + Math.random() * 300).toFixed(0) + "deg");
+      var s = 0.7 + Math.random() * 0.8;
+      p.style.width = (14 * s).toFixed(1) + "px";
+      p.style.height = (18 * s).toFixed(1) + "px";
+      box.appendChild(p);
+    }
+    setTimeout(function(){ box.innerHTML = ""; }, 22000);
+  }
+
+  /* ---- reveal on scroll ---- */
+  function observe(){
+    var targets = [].slice.call(document.querySelectorAll(".card, .reveal"));
+    if (!("IntersectionObserver" in window)){
+      targets.forEach(function(t){ t.classList.add("in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          var t = en.target;
+          var idx = t.classList.contains("card") ? (cards.indexOf(t) - 1) % 5 : 0;
+          t.style.transitionDelay = (t.classList.contains("card") ? idx * 50 : 0) + "ms";
+          t.classList.add("in");
+          io.unobserve(t);
+          if (t.classList.contains("card")) setTimeout(function(){ t.style.transitionDelay = ""; }, 900);
+        }
+      });
+    }, {threshold: .12, rootMargin: "0px 0px -30px 0px"});
+    targets.forEach(function(t){ io.observe(t); });
+  }
+
+  /* ---- misc ---- */
+  $("openBtn").addEventListener("click", function(){
+    $("reasons").scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"});
+  });
+  var toTop = $("toTop");
+  $("toTop").addEventListener("click", function(){
+    window.scrollTo({top: 0, behavior: reduce ? "auto" : "smooth"});
+  });
+  var ticking = false;
+  window.addEventListener("scroll", function(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      toTop.classList.toggle("show", window.scrollY > 700);
+      ticking = false;
+    });
+  }, {passive:true});
+
+  load();
+  build();
+  refresh();
+  observe();
+  petals();
+})();
+</script>
+</body>
+</html>
